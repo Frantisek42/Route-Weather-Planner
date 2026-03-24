@@ -13,8 +13,8 @@ class MapyCZClient:
 
     # TRANSPORT_MODES = {
     #     "🚗 Auto": "car_fast",
-    #     "🚶 Pěšky": "walk",
-    #     "🚲 Kolo": "bike",
+    #     "🚶 Pěšky": "foot_fast",
+    #     "🚲 Kolo": "bike_road",
     # }
 
     def __init__(self):
