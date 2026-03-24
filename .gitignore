@@ -1,0 +1,12 @@
+.venv
+.env
+misc.xml
+modules.xml
+profiles_settings.xml
+Route-Weather-Planner.iml
+.idea/
+.DS_Store
+vcs.xml
+copilot.data.moigration.ask2agent.xml
+__pycache__/
+*.pyc
