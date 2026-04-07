@@ -10,3 +10,4 @@ vcs.xml
 copilot.data.moigration.ask2agent.xml
 __pycache__/
 *.pyc
+logs/
