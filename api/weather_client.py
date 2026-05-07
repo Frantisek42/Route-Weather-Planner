@@ -101,27 +101,6 @@ class WeatherClient:
 
         return None
 
-    def format_weather_item(self, weather_item: dict, label: str) -> str:
-        """
-        Naformátuje jeden záznam předpovědi do čitelného řetězce.
-        """
-        if not weather_item:
-            return f"{label}\n  Data nedostupná."
-
-        desc = weather_item["weather"][0]["description"].capitalize()
-        temp = weather_item["main"]["temp"]
-        feels_like = weather_item["main"]["feels_like"]
-        humidity = weather_item["main"]["humidity"]
-        wind = weather_item["wind"]["speed"]
-
-        return (
-            f"{label}\n"
-            f"  🌡️  Teplota: {temp:.1f}°C (pocitová {feels_like:.1f}°C)\n"
-            f"  🌤️  Počasí: {desc}\n"
-            f"  💧  Vlhkost: {humidity}%\n"
-            f"  💨  Vítr: {wind} m/s"
-        )
-
     def find_optimal_arrival(self, forecast: list, duration_seconds: int) -> tuple[datetime, datetime] | None:
         """
         Najde nejbližší čas příjezdu s hezkým počasím.
@@ -150,3 +129,25 @@ class WeatherClient:
                 return departure, item_time
 
         return None
+
+    def format_weather_item(self, weather_item: dict, label: str) -> str:
+        """
+        Naformátuje jeden záznam předpovědi do čitelného řetězce.
+        """
+        if not weather_item:
+            return f"{label}\n  Data nedostupná."
+
+        desc = weather_item["weather"][0]["description"].capitalize()
+        temp = weather_item["main"]["temp"]
+        feels_like = weather_item["main"]["feels_like"]
+        humidity = weather_item["main"]["humidity"]
+        wind = weather_item["wind"]["speed"]
+
+        return (
+            f"{label}\n"
+            f"  🌡️  Teplota: {temp:.1f}°C (pocitová {feels_like:.1f}°C)\n"
+            f"  🌤️  Počasí: {desc}\n"
+            f"  💧  Vlhkost: {humidity}%\n"
+            f"  💨  Vítr: {wind} m/s"
+        )
+
