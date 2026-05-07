@@ -1,6 +1,7 @@
 import requests
 import os
 from dotenv import load_dotenv
+from datetime import datetime, timezone, timedelta
 from api.logger_file import logger
 
 load_dotenv()
@@ -122,13 +123,14 @@ class MapyCZClient:
         if not route_data:
             return "Trasu se nepodařilo vypočítat."
 
-        distance_m = route_data.get("length", 0)
-        duration_s = route_data.get("duration", 0)
+        distance_m = route_data["parts"][0]["length"]
+        duration_s = route_data["parts"][0]["duration"]
 
         distance_km = distance_m / 1000
         duration_min = duration_s // 60
         hours = duration_min // 60
         minutes = duration_min % 60
+        arrival = datetime.now() + timedelta(seconds=duration_s)
 
         if hours > 0:
             time_str = f"{hours} hod {minutes} min"
@@ -137,5 +139,6 @@ class MapyCZClient:
 
         return (
             f"📏 Vzdálenost: {distance_km:.1f} km\n"
-            f"⏱️  Doba jízdy: {time_str}"
+            f"⏱️ Doba jízdy: {time_str} \n"
+            f"⏱️ Příjezd: {arrival :%d.%m %H:%M}"
         )
